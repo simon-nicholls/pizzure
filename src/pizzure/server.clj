@@ -10,19 +10,6 @@
 ;; From the REPL you can call server/start and server/stop on this service
 (defonce runnable-service (server/create-server service/service))
 
-;;; the problem here is with passing in service/routes
-;; (defn add-namespace-reloading
-;;   [service-map namespaces routes]
-;;   (let [modified-namespaces (ns-tracker namespaces)]
-;;     (update-in service-map [:io.pedestal.http/interceptors]
-;;                (partial map #(if (= (:name %) :io.pedestal.http.route/router)
-;;                          (route/router (fn []
-;;                                          (doseq [ns-sym (modified-namespaces)]
-;;                                            (println "7")
-;;                                            (require ns-sym :reload))
-;;                                          service/routes))
-;;                          %)))))
-
 (defn run-dev
   "The entry-point for 'lein run-dev'"
   [& args]
